@@ -1,0 +1,23 @@
+  <nav>
+  <hr />
+  <h2 class="song-title"><b>{{cancion_ejemplo.titulo | uppercase }}</b></h2>
+
+  <figure class="image-container">
+    <img class="image" src={{cancion_ejemplo.caratula}} alt="couldn't load image">
+    <div class="overlay">
+      <div class="overlay-text"><i>"A true lynchpin of the Detroit underground"</i></div>
+    </div>
+    <figcaption class="caption"><b>by </b> <b>{{cancion_ejemplo.autor | uppercase }}</b></figcaption>
+  </figure>
+
+    <ul class="nav">
+      <li id="album"><b> From the {{cancion_ejemplo.formato_album}}:</b><br />{{cancion_ejemplo.album}}</li>
+      <li><b>Released by:</b><br />{{cancion_ejemplo.discografica}}</li>
+      <li><b>Format:</b><br />{{cancion_ejemplo.formato}}</li>
+      <li><b>Release date:</b><br />{{cancion_ejemplo.fecha_publicacion | date :  "dd/MM/y"}}</li>
+      <li><b>Genre:</b><br />{{cancion_ejemplo.genero}}</li>
+    </ul>
+    <p id="rounded-corner">#{{cancion_ejemplo.hashtag[3]}}</p>
+    <hr />
+</nav>
+
