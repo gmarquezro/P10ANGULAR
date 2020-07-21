@@ -1,0 +1,15 @@
+<!--  songs list -->
+<!-- TO DO:
+      - Add other song attributes to the list: author, album, label and year
+  -->
+<ul class="songs-list"
+    [@flyInOut]="'in'"
+    [@openClose]="isOpen ? '' : 'closed'">
+  <li *ngFor="let cancion of canciones"
+      [class.selected]="cancion === selectedCancion"
+      (click)="onSelect(cancion); close(); toggle()">
+    <span class="song-data"><!-- number --><pre>{{cancion.titulo}}        {{cancion.autor}}       {{cancion.album}}       {{cancion.fecha_publicacion | date :  "dd/MM/y"}}</pre></span>
+  </li>
+</ul>
+
+<app-cancion [cancion]="selectedCancion"></app-cancion>

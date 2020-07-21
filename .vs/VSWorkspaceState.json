@@ -4,7 +4,7 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\cancion",
-    "\\src\\assets"
+    "\\src\\app\\lista-canciones"
   ],
   "SelectedNode": "\\src\\app\\cancion\\cancion.component.ts",
   "PreviewInSolutionExplorer": false
