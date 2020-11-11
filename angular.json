@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angular-music-player"
+    }
+  },
+  "defaultProject": "angular-music-player",
+  "cli": {
+    "analytics": "30d4d5b1-287a-4034-b57e-e892210fdc2a"
+  }
 }
