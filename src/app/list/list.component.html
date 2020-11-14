@@ -1,3 +1,9 @@
-<h2>{{list.name}} Details</h2>
-<div><span>id: </span>{{list.id}}</div>
-<div><span>name: </span>{{list.name}}</div>
+<h2>Mis canciones</h2>
+<ul class="list">
+  <li *ngFor="let cancion of list"
+    [class.selected]="cancion === selectedCancion"
+    (click)="onSelect(cancion)">
+    <span class="badge">{{cancion.titulo}}</span>
+    <span>{{cancion.autor + ' - ' + cancion.estilo}}</span>
+  </li>
+</ul>

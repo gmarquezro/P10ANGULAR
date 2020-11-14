@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { List } from '../list';
+import { PreloadingStrategy } from '@angular/router';
+import { Cancion } from '../cancion';
+import { LIST } from '../mock-songs';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-cancion',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
 
-  list: List = {
-    id: 1,
-    name: 'test'
-  };
+    list = LIST;
+    selectedCancion: Cancion;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
+  onSelect(cancion: Cancion): void {
+    this.selectedCancion = cancion;
+  }
 }
