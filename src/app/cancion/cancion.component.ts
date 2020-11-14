@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PreloadingStrategy } from '@angular/router';
 import { Cancion } from '../cancion';
 import { CANCION } from '../mock-songs';
 
@@ -8,7 +9,7 @@ import { CANCION } from '../mock-songs';
   styleUrls: ['./cancion.component.css']
 })
 export class CancionComponent implements OnInit {
-  
+
     cancion = CANCION;
     selectedCancion: Cancion;
 

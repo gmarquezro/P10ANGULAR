@@ -10,11 +10,7 @@
 <div *ngIf="selectedCancion">
 
   <h2>{{selectedCancion.titulo | uppercase}} Detalles</h2>
-  <div><span>Título:</span>{{selectedCancion.titulo}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="selectedCancion.titulo" placeholder="titulo"/>
-    </label>
-  </div>
+  <div><span>Título:</span> {{selectedCancion.titulo}}</div>
+  
 
 </div>
