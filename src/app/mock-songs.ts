@@ -1,6 +1,7 @@
 import { Cancion } from './cancion';
 
-export const List: Cancion[] = [
+export const LIST: Cancion[] = [
+
     {     
         titulo: 'Hijo de la luna',
         autor: 'Mecano',
