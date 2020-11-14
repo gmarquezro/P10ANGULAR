@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PreloadingStrategy } from '@angular/router';
 import { Cancion } from '../cancion';
+import { CANCION } from '../mock-songs';
 
 @Component({
   selector: 'app-cancion',
@@ -8,18 +8,16 @@ import { Cancion } from '../cancion';
   styleUrls: ['./cancion.component.css']
 })
 export class CancionComponent implements OnInit {
-  cancion: Cancion = {
-    titulo: 'Jailhouse Rock',
-    autor: 'Elvis Presley',
-    year: '1957',
-    disco: 'single',
-    estilo: 'Rock'
-  };
   
+    cancion = CANCION;
+    selectedCancion: Cancion;
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
+  onSelect(cancion: Cancion): void {
+    this.selectedCancion = cancion;
+  }
 }

@@ -1,6 +1,20 @@
-<h2>Detalle de {{cancion.titulo | uppercase}}</h2>
-<div><span>Título: </span>{{cancion.titulo}}</div>
-<div><span>Artista: </span>{{cancion.autor}}</div>
-<div><span>Año: </span>{{cancion.year}}</div>
-<div><span>Disco: </span>{{cancion.disco}}</div>
-<div><span>Estilo: </span>{{cancion.estilo}}</div>
+<h2>Mis canciones</h2>
+<ul class="cancion">
+  <li *ngFor="let cancion of cancion"
+    [class.selected]="cancion === selectedCancion"
+    (click)="onSelect(cancion)">
+    <span class="badge">{{cancion.titulo}}</span> {{cancion.artista}}
+  </li>
+</ul>
+
+<div *ngIf="selectedCancion">
+
+  <h2>{{selectedCancion.titulo | uppercase}} Detalles</h2>
+  <div><span>Título:</span>{{selectedCancion.titulo}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="selectedCancion.titulo" placeholder="titulo"/>
+    </label>
+  </div>
+
+</div>
