@@ -1,0 +1,88 @@
+/*
+    TO DO:
+      - Reduce padding bottom of title h2
+      - Make overlay not invade image border
+      - Change overlay text color to black
+      - Make the corresponding atribute from cancion appear on the side of the list element (doc: detalleCancion)
+*/
+nav {
+  float: right;
+  width: 30%;
+  height: auto;
+  background: #ccc;
+  padding: 10px;
+  text-align: center;
+}
+nav ul {
+  list-style-type: none;
+  line-height: 25px;
+  text-align: justify;
+  margin: 0 auto;
+  width: 12em;
+  position: relative;
+  left: -55px;
+}
+.image-container {
+  position: relative;
+  left: 50px;
+  width: 50%;
+  max-width: 300px;
+}
+.image {
+  display: block;
+  height: 250px;
+  width: 250px;
+  padding: 8px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #999999;
+  border-right: 1px solid #999999;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90%;
+  width: 121.5%;
+  opacity: 0;
+  transition: .8s ease;
+  background-color: #ebebe0;
+}
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.overlay-text {
+  color: #4b5351;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border: 2px solid;
+  padding: 45px;
+  text-align: center;
+}
+.caption {
+  font-size: 17px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  position: relative;
+  left: 20px;
+}
+#rounded-corner {
+  border-radius: 25px;
+  background: #505049;
+  background-position: left top;
+  background-repeat: repeat;
+  color: #e7e7e4;
+  text-align: center;
+  padding: 1px;
+  width: 100px;
+  border-bottom: 0px;
+}
+
