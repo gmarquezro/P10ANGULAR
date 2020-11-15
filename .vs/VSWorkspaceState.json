@@ -4,8 +4,7 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\cancion",
-    "\\src\\app\\list",
-    "\\src\\assets"
+    "\\src\\app\\lista-canciones"
   ],
   "SelectedNode": "\\src\\app\\list",
   "PreviewInSolutionExplorer": false

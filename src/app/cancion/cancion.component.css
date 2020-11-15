@@ -1,23 +1,25 @@
-/*
-    TO DO:
-      - Reduce padding bottom of title h2
-      - Make overlay not invade image border
-      - Change overlay text color to black
-      - Make the corresponding atribute from cancion appear on the side of the list element (doc: detalleCancion)
-*/
+/* Song details */
+
+  /* TO DO:
+        - Reduce padding bottom of title h2
+        - Define overlay border to some degree of gray
+        - Define some degree of transparency for the overlay
+  */
+
 nav {
   float: right;
   width: 30%;
-  height: auto;
+  /*height: 30%;*/
   background: #ccc;
-  padding: 10px;
+  padding: 15px;
   text-align: center;
+  border-radius: 4px;
 }
-nav ul {
-  list-style-type: none;
+ul.song-details-list {
+  list-style: none;
   line-height: 25px;
-  text-align: justify;
   margin: 0 auto;
+  text-align: left;
   width: 12em;
   position: relative;
   left: -55px;
@@ -52,7 +54,6 @@ nav ul {
 .image-container:hover .overlay {
   opacity: 1;
 }
-
 .overlay-text {
   color: #4b5351;
   font-size: 20px;
@@ -74,15 +75,16 @@ nav ul {
   position: relative;
   left: 20px;
 }
-#rounded-corner {
+.rounded-corner-box {
   border-radius: 25px;
   background: #505049;
   background-position: left top;
   background-repeat: repeat;
   color: #e7e7e4;
   text-align: center;
-  padding: 1px;
-  width: 100px;
+  padding: 3px;
+  width: auto;
   border-bottom: 0px;
+  margin: 3px;
+  display: inline-block;
 }
-
