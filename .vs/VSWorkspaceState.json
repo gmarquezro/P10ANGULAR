@@ -4,8 +4,9 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\cancion",
+    "\\src\\app\\list",
     "\\src\\assets"
   ],
-  "SelectedNode": "\\src\\app\\cancion\\cancion.component.ts",
+  "SelectedNode": "\\src\\app\\list",
   "PreviewInSolutionExplorer": false
 }
