@@ -1,15 +1,34 @@
 <!--  songs list -->
-<!-- TO DO:
-      - Add other song attributes to the list: author, album, label and year
-  -->
-<ul class="songs-list"
-    [@flyInOut]="'in'"
-    [@openClose]="isOpen ? '' : 'closed'">
-  <li *ngFor="let cancion of canciones"
+
+<form>
+  <input #criteria (input)="updateCriteria(criteria.value)" placeholder="Search" />
+</form>
+
+<ul class="songs"
+    [@filterAnimation]="totalCanciones"
+    [@close]="isOpen ? '' : 'closed'">
+  <li class="song"
+      *ngFor="let cancion of canciones"
       [class.selected]="cancion === selectedCancion"
-      (click)="onSelect(cancion); close(); toggle()">
-    <span class="song-data"><!-- number --><pre>{{cancion.titulo}}        {{cancion.autor}}       {{cancion.album}}       {{cancion.fecha_publicacion | date :  "dd/MM/y"}}</pre></span>
+      (click)="onSelect(cancion); close()">
+    <div class="inner">
+      <img src="{{cancion.caratula}}" />
+      <!--
+      <div class="container">
+        <img src="{{cancion.caratula}}" />
+          <button mat-button class="btn">
+            <mat-icon mat-list-icon>play_arrow</mat-icon>
+          </button>
+      </div>
+      -->
+      <span>{{cancion.titulo}}</span>
+      <span>{{cancion.autor}}</span>
+      <span>{{cancion.titulo_album}}</span>
+      <!--<span>{{cancion.fecha_publicacion | date :  "dd/MM/y"}}</span>-->
+    </div>
   </li>
 </ul>
 
 <app-cancion [cancion]="selectedCancion"></app-cancion>
+
+<!--<app-reproductor [cancion]="selectedCancion"></app-reproductor>-->

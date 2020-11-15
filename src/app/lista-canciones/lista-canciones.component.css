@@ -1,10 +1,6 @@
 /* Songs List */
 
-  /* TO DO:
-        - Make list span to the lenght of the screen
-        - Add song list categories as aligned headers 
-  */
-.songs-list {
+.songs {
   margin: 0 0 2em 0;
   list-style-type: none;
   padding: 0;
@@ -12,30 +8,64 @@
   text-align: left;
   width: 100%;
 }
-  .songs-list li:focus {
+
+  .songs li:focus {
     transition: all 0.5s cubic-bezier(.36,-0.64,.34,1.76);
     width: 60%;
   }
-.songs-list li {
+
+  .songs li {
+    cursor: pointer;
+    left: 0;
+    background-color: #EEE;
+    margin: .4em;
+    padding: .3em;
+    height: 2em;
+    line-height: 2em;
+    border-radius: 4px;
+  }
+
+    .songs li:hover {
+      color: #607D8B;
+      background-color: #DDD;
+      left: .1em;
+    }
+
+    .songs li.selected {
+      background-color: #ccc;
+      color: white;
+    }
+
+      .songs li.selected:hover {
+        background-color: #CFD8DC;
+        color: white;
+      }
+
+img {
+  width: 2%;
+  height: 2%;
+  vertical-align: middle;
+}
+
+.container {
+  position: relative;
+  width: 2%;
+  vertical-align: middle;
+}
+
+  .container img {
+    width: 100%;
+    height: 100%;
+  }
+
+.btn {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translate(-25%, -15%);
   cursor: pointer;
-  left: 0;
-  background-color: #EEE;
-  margin: .4em;
-  padding: .3em;
-  height: 2em;
-  line-height: 0em;
-  border-radius: 4px;
 }
-.songs-list li:hover {
-  color: #607D8B;
-  background-color: #DDD;
-  left: .1em;
-}
-.songs-list li.selected {
-  background-color: #ccc;
-  color: white;
-}
-.songs-list li.selected:hover {
-  background-color: #CFD8DC;
-  color: white;
+
+span {
+  margin-left: 30px;
 }
