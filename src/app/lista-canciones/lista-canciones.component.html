@@ -51,26 +51,39 @@
             <mat-icon mat-list-icon>pause</mat-icon>
           </button>
         </ng-template>
-          <button mat-button>
-            <mat-icon mat-list-icon (click)="changeSong(1)">skip_next</mat-icon>
+        <button mat-button>
+          <mat-icon mat-list-icon (click)="changeSong(1)">skip_next</mat-icon>
+        </button>
+        <button mat-button (click)="shuffle = !shuffle" [style.background-color]="shuffle ? '#666' : ''">
+          <mat-icon mat-list-icon>shuffle</mat-icon>
+        </button>
+        <button mat-button *ngIf="this.repeat_one; else repeatBlock" [style.background-color]="'#666'" (click)="repeatState()">
+          <mat-icon mat-list-icon>repeat_one</mat-icon>
+        </button>
+        <ng-template #repeatBlock>
+          <button mat-button [style.background-color]="repeat ? '#666' : ''" (click)="repeatState()">
+            <mat-icon mat-list-icon>repeat</mat-icon>
           </button>
-          <div id="time-slider-wrapper">
-            <mat-slider class="time-slider" [(ngModel)]="value"></mat-slider>
-          </div>
-          <button mat-button id="volume-icon" *ngIf="this.audio.muted; else soundBlock" (click)="toggleMute()">
-            <mat-icon mat-list-icon>volume_off</mat-icon>
+        </ng-template>
+        <div id="time-slider-wrapper">
+          <mat-slider class="time-slider" (change)="updateSliderValue($event)" (input)="updateSliderValue($event)" [(ngModel)]="value" step="1" min="0" max="100"></mat-slider>
+          {{ slideValue$ | async }}
+
+        </div>
+        <button mat-button id="volume-icon" *ngIf="this.audio.muted; else soundBlock" (click)="toggleMute()">
+          <mat-icon mat-list-icon>volume_off</mat-icon>
+        </button>
+        <ng-template #soundBlock>
+          <button mat-button (click)="toggleMute()">
+            <mat-icon mat-list-icon>volume_up</mat-icon>
           </button>
-          <ng-template #soundBlock>
-            <button mat-button (click)="toggleMute()">
-              <mat-icon mat-list-icon>volume_up</mat-icon>
-            </button>
-          </ng-template>
-          <!--<mat-slider class="volume-slider" min="0" step="1"></mat-slider>-->
-          <div class="vertical-line"></div>
-          <img id="thumbnail" src="{{selectedCancion.caratula}}" />
-          <div id="side-content">
-            <p>{{selectedCancion.titulo}}<br />{{selectedCancion.autor}}</p>
-          </div>
+        </ng-template>
+        <!--<mat-slider class="volume-slider" min="0" step="1"></mat-slider>-->
+        <div class="vertical-line"></div>
+        <img id="thumbnail" src="{{selectedCancion.caratula}}" />
+        <div id="side-content">
+          <p>{{selectedCancion.titulo}}<br />{{selectedCancion.autor}}</p>
+        </div>
       </mat-toolbar-row>
     </mat-toolbar>
   </div>

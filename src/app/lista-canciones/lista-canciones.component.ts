@@ -1,4 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { MatSliderChange } from '@angular/material';
+import { BehaviorSubject } from 'rxjs' // Usaremos rxjs@6.x para 
 import { CANCIONES } from '../mock-canciones';
 import { Cancion } from '../cancion';
 import {
@@ -73,6 +75,9 @@ export class ListaCancionesComponent implements OnInit {
   current_song_index: number;
   repeat_state: number;
 
+  private slideSubject = new BehaviorSubject<number>(0);
+  readonly slideValue$ = this.slideSubject.asObservable();
+
 /* Fin variables reproductor */
 
   @HostBinding('@pageAnimations')
@@ -120,12 +125,16 @@ export class ListaCancionesComponent implements OnInit {
     }
   }
 
+  /* onSelect
+   *  Se ejecuta al seleccionar una canción de la lista de canciones */
   onSelect(cancion: Cancion): void {
-    this.selectedCancion = cancion;
+    this.selectedCancion = cancion; // Definimos la variable selectedCancion para que guarde la canción seleccionada
     this.current_song_index = CANCIONES.indexOf(this.selectedCancion); // Guardamos la posición de la canción actual en el array CANCIONES
     this.audio = new Audio(this.selectedCancion.url); // Creamos un nuevo audio con el url de la cancion seleccionada
   }
 
+  /* close
+   *  Deberá cerrar la lista */
   close(): void {
     if (this.isOpen)
       this.isOpen = false;
@@ -133,10 +142,17 @@ export class ListaCancionesComponent implements OnInit {
 
 /* Funciones de reproductor */
 
-  randomIntFromInterval(min: number, max: number) { // min and max included 
+  /* randomIntFromInterval
+   *  Genera un numero entero en el rango indicado
+   *  La utilizamos para la reproducción aleatoria */
+    
+  randomIntFromInterval(min: number, max: number) { // minimo y maximo incluidos en el rango
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
+  /* playPause
+   *  Reproducirá la canción si esta está pausada
+   *  pausará la canción si esta se está reproduciendo */
   public playPause() {
     if (this.audio.paused) {
       this.audio.play();
@@ -146,6 +162,9 @@ export class ListaCancionesComponent implements OnInit {
     } // Si se estaba reproduciendo la canción, la paramos
   }
 
+  /* stop
+   *  Pausa la reproducción de la canción y
+   *  y asigna el tiempo de reproducción a 0 */
   public stop() {
     if (!this.audio.paused) {
       this.audio.pause();
@@ -153,10 +172,31 @@ export class ListaCancionesComponent implements OnInit {
     } // Si se está reproduciendo la canción, la paramos 
   }
 
+  /* toggleMute
+   *  Si la canción está en silencio, activa el sonido
+   *  si la canción tiene el sonido activado, lo desactiva */
   toggleMute() {
       this.audio.muted = !this.audio.muted;
   } // Si el sonido está desactivado, entonces lo activamos (unmute), sino lo desactivamos 
-  
+
+  repeatState() {
+    this.repeat_state += 1;
+
+    if (this.repeat_state > 2) this.repeat_state = 0; // El número de estado es 3
+
+    switch (this.repeat_state) {
+      case 0: // No se ha indicado repetición
+        this.repeat_one = false;
+        break;
+      case 1: // Se reproducen las canciones de la lista de canciones en bucle
+        this.repeat = true;
+        break;
+      case 2: // Se repite la reproducción de la misma canción en bucle
+        this.repeat = false;
+        this.repeat_one = true;
+        break;
+    }
+  }
 
   /* changeSong:
  *  Modo aleatorio desactivado:
@@ -199,6 +239,10 @@ export class ListaCancionesComponent implements OnInit {
     this.audio.load();
 
     if (this.isPlaying) this.audio.play(); // Si la canción anterior se estaba reproduciendo, la nueva canción también se reproducirá
+  }
+
+  updateSliderValue(event: MatSliderChange) {
+    this.slideSubject.next(event.value);
   }
 
 }
