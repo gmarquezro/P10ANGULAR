@@ -32,3 +32,46 @@
 <app-cancion [cancion]="selectedCancion"></app-cancion>
 
 <!--<app-reproductor [cancion]="selectedCancion"></app-reproductor>-->
+
+<div *ngIf="selectedCancion" class="reproductor-container">
+  <div class="media-footer">
+    <mat-toolbar color="secondary">
+      <mat-toolbar-row class="media-action-bar">
+        <button mat-button>
+          <mat-icon mat-list-icon (click)="changeSong(-1)">skip_previous</mat-icon>
+        </button>
+        <button mat-button (click)="stop()">
+          <mat-icon mat-list-icon>stop</mat-icon>
+        </button>
+        <button mat-button *ngIf="this.audio.paused; else playingBlock" (click)="playPause()">
+          <mat-icon mat-list-icon>play_arrow</mat-icon>
+        </button>
+        <ng-template #playingBlock>
+          <button mat-button (click)="playPause()">
+            <mat-icon mat-list-icon>pause</mat-icon>
+          </button>
+        </ng-template>
+          <button mat-button>
+            <mat-icon mat-list-icon (click)="changeSong(1)">skip_next</mat-icon>
+          </button>
+          <div id="time-slider-wrapper">
+            <mat-slider class="time-slider" [(ngModel)]="value"></mat-slider>
+          </div>
+          <button mat-button id="volume-icon" *ngIf="this.audio.muted; else soundBlock" (click)="toggleMute()">
+            <mat-icon mat-list-icon>volume_off</mat-icon>
+          </button>
+          <ng-template #soundBlock>
+            <button mat-button (click)="toggleMute()">
+              <mat-icon mat-list-icon>volume_up</mat-icon>
+            </button>
+          </ng-template>
+          <!--<mat-slider class="volume-slider" min="0" step="1"></mat-slider>-->
+          <div class="vertical-line"></div>
+          <img id="thumbnail" src="{{selectedCancion.caratula}}" />
+          <div id="side-content">
+            <p>{{selectedCancion.titulo}}<br />{{selectedCancion.autor}}</p>
+          </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+</div>
