@@ -16,7 +16,7 @@ export const CANCIONES: Cancion[] = [
     hashtag: ['Techno', 'middleacid', 'Detroit', 'espinstitute', 'sharif', 'laffrey', 'tangier']
   },
   {
-    url: '../assets/song/routeE.mp3',
+    url: '../assets/songs/routeE.mp3',
     caratula: '../assets/img/routeE.jpg',
     titulo: 'Route E',
     autor: 'Jensen Interceptor',
@@ -30,7 +30,7 @@ export const CANCIONES: Cancion[] = [
     hashtag: ['Industrial', 'jenseninterceptor', 'ebm', 'industrial', 'newwave', 'powerstation']
   },
   {
-    url: '../assets/song/Davardage.mp3',
+    url: '../assets/songs/Davardage.mp3',
     caratula: '../assets/img/davardage.jpg',
     titulo: 'Davardage',
     autor: 'Maahrt',
@@ -44,7 +44,7 @@ export const CANCIONES: Cancion[] = [
     hashtag: ['kump', 'maahrt', 'downtempo', 'industrial']
   },
   {
-    url: '../assets/song/kleineReise.mp3',
+    url: '../assets/songs/kleineReise.mp3',
     caratula: '../assets/img/franzScala.jpg',
     titulo: 'Kleine Reise',
     autor: 'Franz Scala',
@@ -58,7 +58,7 @@ export const CANCIONES: Cancion[] = [
     hashtag: ['franz', 'scala', 'franzscala', 'mechatronica', 'synth-pop', 'Italo', 'newbeat']
   },
   {
-    url: '../assets/song/phoneSex.mp3',
+    url: '../assets/songs/phoneSex.mp3',
     caratula: '../assets/img/phoneSex.jpg',
     titulo: 'P.H.O.N.E Sex',
     autor: 'ADSX feat.Hanoben',

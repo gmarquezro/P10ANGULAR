@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Cancion } from '../cancion';
+
 import {
   trigger,
   state,
@@ -37,10 +38,12 @@ import {
 })
 
 export class CancionComponent implements OnInit {
-    
+  audioObj = new Audio();
+
   @Input() cancion: Cancion;
   
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit() {
   }
@@ -51,5 +54,29 @@ export class CancionComponent implements OnInit {
     this.isOpen = !this.isOpen;
   }
 
+  setVolume(ev){
+    this.audioObj.volume = ev.target.value;
+  }
+
+  play() {
+    if (globalThis.play == false)
+      this.audioObj.play();
+    else
+      this.audioObj.src = this.cancion.url;
+      this.audioObj.load();
+      this.audioObj.play();   
+  }
+
+  pause() {
+    this.audioObj.pause();
+    globalThis.play = false;
+  }
+
+  stop() {
+    this.audioObj.pause();
+    this.audioObj.currentTime=0;
+  }
+
   
+
 }
