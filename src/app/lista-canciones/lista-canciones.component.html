@@ -37,8 +37,8 @@
   <div class="media-footer">
     <mat-toolbar color="secondary">
       <mat-toolbar-row class="media-action-bar">
-        <button mat-button>
-          <mat-icon mat-list-icon (click)="changeSong(-1)">skip_previous</mat-icon>
+        <button mat-button  [disabled]="isFirstPlaying()" (click)="changeSong(-1)">
+          <mat-icon mat-list-icon>skip_previous</mat-icon>
         </button>
         <button mat-button (click)="stop()">
           <mat-icon mat-list-icon>stop</mat-icon>
@@ -51,17 +51,17 @@
             <mat-icon mat-list-icon>pause</mat-icon>
           </button>
         </ng-template>
-        <button mat-button>
-          <mat-icon mat-list-icon (click)="changeSong(1)">skip_next</mat-icon>
+        <button mat-button [disabled]="isLastPlaying()"   (click)="changeSong(1)">
+          <mat-icon mat-list-icon>skip_next</mat-icon>
         </button>
         <button mat-button (click)="shuffle = !shuffle" [style.background-color]="shuffle ? '#666' : ''">
           <mat-icon mat-list-icon>shuffle</mat-icon>
         </button>
-        <button mat-button *ngIf="this.repeat_one; else repeatBlock" [style.background-color]="'#666'" (click)="repeatState()">
+        <button mat-button *ngIf="this.repeat_one; else repeatBlock" [style.background-color]="'#666'" (click)="updateRepeatState()">
           <mat-icon mat-list-icon>repeat_one</mat-icon>
         </button>
         <ng-template #repeatBlock>
-          <button mat-button [style.background-color]="repeat ? '#666' : ''" (click)="repeatState()">
+          <button mat-button [style.background-color]="repeat ? '#666' : ''" (click)="updateRepeatState()">
             <mat-icon mat-list-icon>repeat</mat-icon>
           </button>
         </ng-template>

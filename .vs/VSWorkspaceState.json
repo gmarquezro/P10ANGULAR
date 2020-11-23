@@ -3,8 +3,10 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\lista-canciones"
+    "\\src\\app\\lista-canciones",
+    "\\src\\assets",
+    "\\src\\assets\\img"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\lista-canciones\\lista-canciones.component.ts",
   "PreviewInSolutionExplorer": false
 }

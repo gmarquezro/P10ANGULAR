@@ -179,10 +179,10 @@ export class ListaCancionesComponent implements OnInit {
       this.audio.muted = !this.audio.muted;
   } // Si el sonido está desactivado, entonces lo activamos (unmute), sino lo desactivamos 
 
-  repeatState() {
+  updateRepeatState() {
     this.repeat_state += 1;
 
-    if (this.repeat_state > 2) this.repeat_state = 0; // El número de estado es 3
+    if (this.repeat_state > 2) this.repeat_state = 0; // hay tres estados de repetición definidos (0, 1 y 2), por lo tanto el estado de repetición no puede exceder 2
 
     switch (this.repeat_state) {
       case 0: // No se ha indicado repetición
@@ -210,7 +210,12 @@ export class ListaCancionesComponent implements OnInit {
 
     let randomInt: number;
 
-    if (!this.audio.paused) this.audio.pause(); // Si se está reproduciendo la canción actual, la paramos 
+    if (!this.audio.paused) {
+      this.audio.pause(); // Si se está reproduciendo la canción actual, la paramos
+      this.isPlaying = true; // Guardamos el estado de reproducción de la canción anterior
+    } else {
+      this.isPlaying = false;
+    }
 
     if (!this.shuffle) {
       if (!this.repeat) {
@@ -238,7 +243,33 @@ export class ListaCancionesComponent implements OnInit {
     this.audio = new Audio(this.selectedCancion.url);
     this.audio.load();
 
-    if (this.isPlaying) this.audio.play(); // Si la canción anterior se estaba reproduciendo, la nueva canción también se reproducirá
+    if (this.isPlaying) {
+      this.audio.play(); // Si la canción anterior se estaba reproduciendo, la nueva canción también se reproducirá
+    } // isPlaying guarda el estado de reproducción de la canción anterior
+  }
+
+  /* isFirstPlaying
+   *  Sirve para desactivar el botón "skip_previous" en caso de que no se haya seleccionado ninguna opción de repetición de canciones
+   */
+  isFirstPlaying() {
+    if ((this.repeat_state === 0) && (this.current_song_index === 0)) {
+      return true;
+    } // Si no se ha seleccionado ninguna opción de repetición y el índice de la canción que se está reproduciendo es 0, entonces se desactivará el botón "skip_previous"
+    else {
+      return false;
+    } // Si alguna opción de repetición está activada, el botón no se deshabilitará en ningún caso
+  }
+
+/* isLastPlaying
+ *  Sirve para desactivar el botón "skip_next" en caso de que no se haya seleccionado ninguna opción de repetición de canciones
+ */
+  isLastPlaying() {
+    if ((this.repeat_state === 0) && (this.current_song_index === (this.canciones.length - 1))) {
+      return true;
+    } // Si no se ha seleccionado ninguna opción de repetición y el índice de la canción que se está reproduciendo es 0, entonces se desactivará el botón "skip_next"
+    else {
+      return false;
+    }  // Si alguna opción de repetición está activada, el botón no se deshabilitará en ningún caso
   }
 
   updateSliderValue(event: MatSliderChange) {
