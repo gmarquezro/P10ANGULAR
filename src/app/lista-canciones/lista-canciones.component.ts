@@ -252,7 +252,7 @@ export class ListaCancionesComponent implements OnInit {
    *  Sirve para desactivar el botón "skip_previous" en caso de que no se haya seleccionado ninguna opción de repetición de canciones
    */
   isFirstPlaying() {
-    if ((this.repeat_state === 0) && (this.current_song_index === 0)) {
+    if (((this.repeat_state === 0) && (!this.shuffle)) && (this.current_song_index === 0)) {
       return true;
     } // Si no se ha seleccionado ninguna opción de repetición y el índice de la canción que se está reproduciendo es 0, entonces se desactivará el botón "skip_previous"
     else {
@@ -264,7 +264,7 @@ export class ListaCancionesComponent implements OnInit {
  *  Sirve para desactivar el botón "skip_next" en caso de que no se haya seleccionado ninguna opción de repetición de canciones
  */
   isLastPlaying() {
-    if ((this.repeat_state === 0) && (this.current_song_index === (this.canciones.length - 1))) {
+    if (((this.repeat_state === 0) && (!this.shuffle)) && (this.current_song_index === (this.canciones.length - 1))) {
       return true;
     } // Si no se ha seleccionado ninguna opción de repetición y el índice de la canción que se está reproduciendo es 0, entonces se desactivará el botón "skip_next"
     else {
