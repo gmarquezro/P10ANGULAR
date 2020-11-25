@@ -3,6 +3,7 @@ import { MatSliderChange } from '@angular/material';
 import { BehaviorSubject } from 'rxjs' // Usaremos rxjs@6.x para 
 import { CANCIONES } from '../mock-canciones';
 import { Cancion } from '../cancion';
+import * as moment from 'moment';
 import {
   trigger,
   state,
@@ -64,9 +65,7 @@ export class ListaCancionesComponent implements OnInit {
   isOpen = true;
 
 /* Variables reproductor */
-
   audio: HTMLAudioElement;
-  timeSliderValue: number;
   isMuted: Boolean;
   isPlaying: Boolean;
   shuffle: Boolean;
@@ -74,9 +73,10 @@ export class ListaCancionesComponent implements OnInit {
   repeat_one: Boolean;
   current_song_index: number;
   repeat_state: number;
-
-  private slideSubject = new BehaviorSubject<number>(0);
-  readonly slideValue$ = this.slideSubject.asObservable();
+  playerStatus: BehaviorSubject<string> = new BehaviorSubject('paused');
+  currentTime: BehaviorSubject<string> = new BehaviorSubject('00:00');
+  durationTime: BehaviorSubject<string> = new BehaviorSubject('-00:00');
+  currentPercent: BehaviorSubject<number> = new BehaviorSubject(0);
 
 /* Fin variables reproductor */
 
@@ -94,21 +94,67 @@ export class ListaCancionesComponent implements OnInit {
 
   /* Asignamos valores iniciales a las variables de reproductor */
 
-    this.timeSliderValue = 50;
     this.isMuted = false;
     this.isPlaying = false;
     this.shuffle = false;
     this.repeat = false;
     this.repeat_one = false;
     this.repeat_state = 0;
+    this.audio = new Audio();
  
   }
 
   ngOnInit() {
     this._canciones = CANCIONES;
+    this.registerAudioEvents();
   }
 
-  updateCriteria(criteria: string) {
+  private registerAudioEvents(): void {
+    this.audio.addEventListener('timeupdate', this.updateTime, false);
+    this.audio.addEventListener('playing', this.setStatus, false);
+    this.audio.addEventListener('pause', this.setStatus, false);
+    this.audio.addEventListener('waiting', this.setStatus, false);
+    this.audio.addEventListener('ended', this.setStatus, false);
+}
+
+private updateTime = (evt) => {
+  this.setTime(this.audio.currentTime);
+}
+
+private setTime(currentTime){
+  let durationTime = this.audio.duration;
+  let current =  moment.duration(currentTime, 'seconds');
+  let percent = currentTime / durationTime * 100;
+
+  this.currentTime.next(moment.utc(current.asMilliseconds()).format('mm:ss')); //00:00
+
+  this.currentPercent.next(percent);//50  
+}
+
+setStatus = (event) => {
+  switch (event.type) {
+      case 'playing':
+          this.playerStatus.next('playing');
+          let duration =  moment.duration(this.audio.duration, 'seconds'); 
+          this.durationTime.next(moment.utc(duration.asMilliseconds()).format('mm:ss'));
+          break;
+      case 'pause':
+          this.playerStatus.next('paused');
+          break;
+      case 'waiting':
+          this.playerStatus.next('loading');
+          break;
+      case 'ended':
+          this.changeSong();
+          this.playerStatus.next('ended');
+          break;
+      default:
+          this.playerStatus.next('paused');
+          break;
+  }
+}
+
+updateCriteria(criteria: string) {
     criteria = criteria ? criteria.trim() : '';
 
     this._canciones = CANCIONES.filter(cancion => cancion.titulo.toLowerCase().includes(criteria.toLowerCase()) // Filto por titulo
@@ -130,7 +176,8 @@ export class ListaCancionesComponent implements OnInit {
   onSelect(cancion: Cancion): void {
     this.selectedCancion = cancion; // Definimos la variable selectedCancion para que guarde la canción seleccionada
     this.current_song_index = CANCIONES.indexOf(this.selectedCancion); // Guardamos la posición de la canción actual en el array CANCIONES
-    this.audio = new Audio(this.selectedCancion.url); // Creamos un nuevo audio con el url de la cancion seleccionada
+    this.audio.src = this.selectedCancion.url;
+    this.audio.play();
   }
 
   /* close
@@ -206,7 +253,7 @@ export class ListaCancionesComponent implements OnInit {
  *    - Se selecciona una canción aleatoria de entre las canciones disponibles: array CANCIONES
  *  - Ya esté o no activado el modo aleatorio, se mantiene el estado de reproducción al pasar de canción:
  *     - si la anterior cancion se estaba reproduciendo, la nueva canción también se reproducirá y viceversa */
-  public changeSong(n: number) {
+  public changeSong(n: number = 0) {
 
     let randomInt: number;
 
@@ -240,12 +287,8 @@ export class ListaCancionesComponent implements OnInit {
     } // Evluamos si el modo aleatorio (shuffle) está activado
 
     this.selectedCancion = CANCIONES[this.current_song_index];
-    this.audio = new Audio(this.selectedCancion.url);
-    this.audio.load();
-
-    if (this.isPlaying) {
-      this.audio.play(); // Si la canción anterior se estaba reproduciendo, la nueva canción también se reproducirá
-    } // isPlaying guarda el estado de reproducción de la canción anterior
+    this.audio.src = this.selectedCancion.url;
+    this.audio.play();
   }
 
   /* isFirstPlaying
@@ -273,7 +316,9 @@ export class ListaCancionesComponent implements OnInit {
   }
 
   updateSliderValue(event: MatSliderChange) {
-    this.slideSubject.next(event.value);
+    let percentage = event.value;
+    let newCurrentTime = percentage * this.audio.duration/100;
+    this.audio.currentTime = newCurrentTime;
   }
 
 }

@@ -66,8 +66,9 @@
           </button>
         </ng-template>
         <div id="time-slider-wrapper">
-          <mat-slider class="time-slider" (change)="updateSliderValue($event)" (input)="updateSliderValue($event)" [(ngModel)]="value" step="1" min="0" max="100"></mat-slider>
-          {{ slideValue$ | async }}
+         {{currentTime.value}}
+          <mat-slider class="time-slider" [value]="currentPercent.value" (input)="updateSliderValue($event)" step="1" min="0" max="100"></mat-slider>
+        {{durationTime.value}}
 
         </div>
         <button mat-button id="volume-icon" *ngIf="this.audio.muted; else soundBlock" (click)="toggleMute()">
