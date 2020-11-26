@@ -4,6 +4,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Development server
 
+Run `npm install` 
+
+Run `npm install moment` or `npm add moment` as well, as it seems moment is not included by running `npm install`. Running this command should resolve the potential issue that arises when trying to import the moment.js library.
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding

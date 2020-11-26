@@ -77,6 +77,7 @@ export class ListaCancionesComponent implements OnInit {
   currentTime: BehaviorSubject<string> = new BehaviorSubject('00:00');
   durationTime: BehaviorSubject<string> = new BehaviorSubject('-00:00');
   currentPercent: BehaviorSubject<number> = new BehaviorSubject(0);
+  durationTimeLeft: BehaviorSubject<string> = new BehaviorSubject('00:00');
 
 /* Fin variables reproductor */
 
@@ -105,6 +106,7 @@ export class ListaCancionesComponent implements OnInit {
   }
 
   ngOnInit() {
+    moment.updateLocale(moment.locale(), { invalidDate: "" }) // Actualizamos el mensaje que muestra moment.js al obtener una fecha inválida
     this._canciones = CANCIONES;
     this.registerAudioEvents();
   }
@@ -123,12 +125,19 @@ private updateTime = (evt) => {
 
 private setTime(currentTime){
   let durationTime = this.audio.duration;
-  let current =  moment.duration(currentTime, 'seconds');
+  let current = moment.duration(currentTime, 'seconds');
   let percent = currentTime / durationTime * 100;
+  let timeLeft = durationTime - currentTime; // Calculamos el tiempo restante de reproducción, como número
+  let left = moment.duration(timeLeft, 'seconds'); // Pasamos el tiempo restante de reproducción a segundos
+  let duration = moment.duration(durationTime, 'seconds');
+
+  this.durationTimeLeft.next(moment.utc(left.asMilliseconds()).format('mm:ss')); // Asignamos el próximo valor de tiempo restante de reproducción
 
   this.currentTime.next(moment.utc(current.asMilliseconds()).format('mm:ss')); //00:00
 
-  this.currentPercent.next(percent);//50  
+  this.currentPercent.next(percent);//50
+
+
 }
 
 setStatus = (event) => {

@@ -65,27 +65,39 @@
             <mat-icon mat-list-icon>repeat</mat-icon>
           </button>
         </ng-template>
-        <div id="time-slider-wrapper">
-         {{currentTime.value}}
-          <mat-slider class="time-slider" [value]="currentPercent.value" (input)="updateSliderValue($event)" step="1" min="0" max="100"></mat-slider>
-        {{durationTime.value}}
 
-        </div>
-        <button mat-button id="volume-icon" *ngIf="this.audio.muted; else soundBlock" (click)="toggleMute()">
-          <mat-icon mat-list-icon>volume_off</mat-icon>
-        </button>
-        <ng-template #soundBlock>
-          <button mat-button (click)="toggleMute()">
-            <mat-icon mat-list-icon>volume_up</mat-icon>
-          </button>
-        </ng-template>
-        <!--<mat-slider class="volume-slider" min="0" step="1"></mat-slider>-->
+        <span><div id="time-slider-wrapper">
+          {{currentTime.value}}
+          <mat-slider class="time-slider" [value]="currentPercent.value" (input)="updateSliderValue($event)" step="1" min="0" max="100"></mat-slider>
+          <div *ngIf="durationTimeLeft.value === durationTime.value; else timeLeftBlock">
+            {{durationTime.value}}
+          </div>
+          <ng-template #timeLeftBlock>
+            <div>{{durationTimeLeft.value}}</div>
+          </ng-template>
+        </div></span>
+
+          <span><button mat-button id="volume-icon" *ngIf="this.audio.muted; else soundBlock" (click)="toggleMute()">
+            <mat-icon mat-list-icon>volume_off</mat-icon>
+          </button></span>
+          <ng-template #soundBlock>
+            <span><button mat-button (click)="toggleMute()">
+              <mat-icon mat-list-icon>volume_up</mat-icon>
+            </button></span>
+          </ng-template>
+
         <div class="vertical-line"></div>
-        <img id="thumbnail" src="{{selectedCancion.caratula}}" />
-        <div id="side-content">
-          <p>{{selectedCancion.titulo}}<br />{{selectedCancion.autor}}</p>
-        </div>
-      </mat-toolbar-row>
+          <img id="thumbnail" src="{{selectedCancion.caratula}}" />
+          <div id="side-content">
+            <p>{{selectedCancion.titulo}}<br />{{selectedCancion.autor}}</p>
+          </div>
+          <!--<mat-slider class="volume-slider" min="0" step="1"></mat-slider>
+          <div class="vertical-line"></div>
+          <img id="thumbnail" src="{{selectedCancion.caratula}}" />
+          <div id="side-content">
+            <p>{{selectedCancion.titulo}}<br />{{selectedCancion.autor}}</p>
+          </div>-->
+</mat-toolbar-row>
     </mat-toolbar>
   </div>
 </div>
