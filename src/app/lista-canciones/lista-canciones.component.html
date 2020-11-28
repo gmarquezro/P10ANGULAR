@@ -36,6 +36,7 @@
 <div *ngIf="selectedCancion" class="reproductor-container">
   <div class="media-footer">
     <mat-toolbar color="secondary">
+      
       <mat-toolbar-row class="media-action-bar">
         <button mat-button  [disabled]="isFirstPlaying()" (click)="changeSong(-1)">
           <mat-icon mat-list-icon>skip_previous</mat-icon>
@@ -66,7 +67,7 @@
           </button>
         </ng-template>
 
-        <span><div id="time-slider-wrapper">
+        <div id="time-slider-wrapper">
           {{currentTime.value}}
           <mat-slider class="time-slider" [value]="currentPercent.value" (input)="updateSliderValue($event)" step="1" min="0" max="100"></mat-slider>
           <div *ngIf="durationTimeLeft.value === durationTime.value; else timeLeftBlock">
@@ -75,7 +76,7 @@
           <ng-template #timeLeftBlock>
             <div>{{durationTimeLeft.value}}</div>
           </ng-template>
-        </div></span>
+        </div>
 
           <span><button mat-button id="volume-icon" *ngIf="this.audio.muted; else soundBlock" (click)="toggleMute()">
             <mat-icon mat-list-icon>volume_off</mat-icon>
@@ -85,19 +86,21 @@
               <mat-icon mat-list-icon>volume_up</mat-icon>
             </button></span>
           </ng-template>
-
+        <span class="spacer"></span>
         <div class="vertical-line"></div>
+        <div class="toolbar-detail">
           <img id="thumbnail" src="{{selectedCancion.caratula}}" />
           <div id="side-content">
             <p>{{selectedCancion.titulo}}<br />{{selectedCancion.autor}}</p>
           </div>
+        </div>
           <!--<mat-slider class="volume-slider" min="0" step="1"></mat-slider>
           <div class="vertical-line"></div>
           <img id="thumbnail" src="{{selectedCancion.caratula}}" />
           <div id="side-content">
             <p>{{selectedCancion.titulo}}<br />{{selectedCancion.autor}}</p>
           </div>-->
-</mat-toolbar-row>
+      </mat-toolbar-row>
     </mat-toolbar>
   </div>
 </div>

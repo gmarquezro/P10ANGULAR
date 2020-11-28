@@ -96,7 +96,7 @@ mat-icon {
 .time-slider {
   float: left;
   display: inline;
-  width: 50% !important;
+  width: 25% !important;
   position: fixed;
   bottom: 0;
   margin-left: 20px;
@@ -124,15 +124,43 @@ mat-icon {
   height: 50px;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
+.media-footer {
+  height: 60px;
+  padding-inline: 5px;
+}
+
+.vertical-line {
+  padding: 10px;
+  height: 30px;
+}
+
+.toolbar-detail {
+  display: inline-flex;
+}
+
+#time-slider-wrapper {
+  display: inline-block;
+  padding:4px;
+}
 #thumbnail-wrapper {
   float: left;
 }
 
+#volume-icon {
+  position: absolute;
+  left: 200px;
+}
+
 #thumbnail {
   float: left;
-  display: block;
   width: 45px;
   height: 45px;
+  position: relative;
+  top: 30px;
 }
 
 #side-content {
