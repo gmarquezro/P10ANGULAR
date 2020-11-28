@@ -94,11 +94,12 @@ mat-icon {
 }
 
 .time-slider {
-  float: left;
-  display: inline;
-  width: 25% !important;
-  position: fixed;
-  bottom: 0;
+  float: right;
+  display: inline-flex;
+  
+  min-width: 200px ;
+  position: relative;
+  bottom: -10px;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -113,9 +114,7 @@ mat-icon {
   display: none;
 }
 
-.volume-icon:hover .volume-slider {
-  display: block;
-}
+
 
 .vertical-line {
   border-left: 2px solid grey;
@@ -142,14 +141,11 @@ mat-icon {
   display: inline-flex;
 }
 
-#time-slider-wrapper {
-  display: inline-block;
-  padding:4px;
-}
+
+
 #thumbnail-wrapper {
   float: left;
 }
-
 
 #thumbnail {
   float: left;

@@ -66,8 +66,9 @@
             <mat-icon mat-list-icon>repeat</mat-icon>
           </button>
         </ng-template>
+        
 
-        <div id="time-slider-wrapper">
+        <span><div id="time-slider-wrapper">
           {{currentTime.value}}
           <mat-slider class="time-slider" [value]="currentPercent.value" (input)="updateSliderValue($event)" step="1" min="0" max="100"></mat-slider>
           <div *ngIf="durationTimeLeft.value === durationTime.value; else timeLeftBlock">
@@ -76,15 +77,17 @@
           <ng-template #timeLeftBlock>
             <div>{{durationTimeLeft.value}}</div>
           </ng-template>
-        </div>
-          <span><button mat-button id="volume-icon" *ngIf="this.audio.muted; else soundBlock" (click)="toggleMute()">
+        </div></span>
+
+          <button mat-button id="volume-icon" *ngIf="this.audio.muted; else soundBlock" (click)="toggleMute()">
             <mat-icon mat-list-icon>volume_off</mat-icon>
-          </button></span>
+          </button>
           <ng-template #soundBlock>
-            <span><button mat-button (click)="toggleMute()">
+            <button mat-button (click)="toggleMute()">
               <mat-icon mat-list-icon>volume_up</mat-icon>
-            </button></span>
+            </button>
           </ng-template>
+
         <span class="spacer"></span>
         <div class="vertical-line"></div>
         <div class="toolbar-detail">
