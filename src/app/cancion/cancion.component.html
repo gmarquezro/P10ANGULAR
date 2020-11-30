@@ -15,6 +15,6 @@
     <mat-list-item><b>Genre: </b> {{cancion.genero}}</mat-list-item>
     <mat-list-item><b>Style: </b> {{cancion.estilo}}</mat-list-item>
   </mat-list>
-  <p *ngFor="let hashtag of cancion.hashtag; let i = index" class="rounded-corner-box">#{{cancion.hashtag[i]}}</p>
+  <p *ngFor="let hashtag of cancion.hashtag; let i = index" class="mat-stroked-button">#{{cancion.hashtag[i]}}</p>
   <mat-divider></mat-divider>
 </nav>

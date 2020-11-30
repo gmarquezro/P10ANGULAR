@@ -27,7 +27,7 @@ h2 {
 
 .image-container {
   position: relative;
-  left: 65px;
+  left: 85px;
   width: 50%;
   max-width: 300px;
 }
@@ -36,9 +36,9 @@ h2 {
 
 .image {
   display: block;
-  height: 150px;
-  width: 150px;
-  padding: 8px;
+  height: 120px;
+  width: 120px;
+  padding: 5px;
   background-color: #f5f5f5;
   border-bottom: 1px solid #999999;
   border-right: 1px solid #999999;
@@ -51,7 +51,7 @@ h2 {
   padding-top: 5px;
   text-align: center;
   position: relative;
-  left: -15px;
+  left: -30px;
 }
 
 .overlay {
@@ -84,14 +84,14 @@ h2 {
   text-align: center;
 }
 
-.rounded-corner-box {
+.mat-stroked-button {
   border-radius: 25px;
   background: #505049;
   background-position: left top;
   background-repeat: repeat;
   color: #e7e7e4;
   text-align: center;
-  padding: 3px;
+  padding: 2px;
   width: auto;
   border-bottom: 0px;
   margin: 5px;
@@ -100,4 +100,8 @@ h2 {
 
 .insert-container {
   block-size: 600px;
+}
+
+.mat-list {
+  padding-top: 3px;
 }
