@@ -1,5 +1,5 @@
   <nav *ngIf="cancion" [@flyInOut]="'in'" class="insert-container">
-  <hr />
+  <mat-divider></mat-divider>
   <h2 class="song-title"><b>{{cancion.titulo | uppercase }}</b></h2>
   <figure class="image-container">
     <img class="image" src={{cancion.caratula}} alt="No se ha podido cargar la foto">
@@ -8,13 +8,13 @@
     </div>
     <figcaption class="caption"><b>by </b> <b>{{cancion.autor | uppercase }}</b></figcaption>
   </figure>
-  <ul class="song-details-list">
-    <li><b> Album:</b><br />{{cancion.titulo_album}}</li>
-    <li><b>Released by:</b><br />{{cancion.discografica}}</li>
-    <li><b>Release date:</b><br />{{cancion.fecha_publicacion | date :  "dd/MM/y"}}</li>
-    <li><b>Genre:</b><br />{{cancion.genero}}</li>
-    <li><b>Style:</b><br />{{cancion.estilo}}</li>
-  </ul>
+  <mat-list dense class="song-details-list">
+    <mat-list-item><b> Album: </b> {{cancion.titulo_album}}</mat-list-item>
+    <mat-list-item><b>Released by: </b> {{cancion.discografica}}</mat-list-item>
+    <mat-list-item><b>Release date: </b> {{cancion.fecha_publicacion | date :  "dd/MM/y"}}</mat-list-item>
+    <mat-list-item><b>Genre: </b> {{cancion.genero}}</mat-list-item>
+    <mat-list-item><b>Style: </b> {{cancion.estilo}}</mat-list-item>
+  </mat-list>
   <p *ngFor="let hashtag of cancion.hashtag; let i = index" class="rounded-corner-box">#{{cancion.hashtag[i]}}</p>
-  <hr />
+  <mat-divider></mat-divider>
 </nav>

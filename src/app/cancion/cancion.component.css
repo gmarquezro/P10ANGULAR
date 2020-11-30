@@ -23,15 +23,7 @@ h2 {
   margin-bottom: 5 px;
 }
 
-ul.song-details-list {
-  list-style: none;
-  line-height: 23px;
-  margin: 0 auto;
-  text-align: left;
-  width: 15em;
-  position: relative;
-  left: -65px;
-}
+
 
 .image-container {
   position: relative;
@@ -104,4 +96,8 @@ ul.song-details-list {
   border-bottom: 0px;
   margin: 5px;
   display: inline-block;
+}
+
+.insert-container {
+  block-size: 600px;
 }
