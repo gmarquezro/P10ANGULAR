@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "music-player-app",
+      "public": "dist/music-player-app",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

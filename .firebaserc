@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "p10angular": {
+      "hosting": {
+        "music-player-app": [
+          "p10angular"
+        ]
+      }
+    }
+  }
+}
