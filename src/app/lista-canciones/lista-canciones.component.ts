@@ -169,12 +169,11 @@ setStatus = (event) => {
 
 updateCriteria(criteria: string) {
     criteria = criteria ? criteria.trim() : '';
-
     this._canciones = this.songs1.filter(cancion => cancion.titulo.toLowerCase().includes(criteria.toLowerCase()) // Filto por titulo
       || cancion.autor.toLowerCase().includes(criteria.toLowerCase()) // Filtro por autor
       || cancion.titulo_album.toLowerCase().includes(criteria.toLowerCase()) // Filtro por titulo_album
-      || cancion.fecha_publicacion.getFullYear().toString().includes(criteria)); // Filtro por año en fecha_publicacion
-
+      || cancion.fecha_publicacion.toString().includes(criteria)); // Filtro por año en fecha_publicacion
+    console.log(this._canciones);
     const newTotal = this.canciones.length;
 
     if (this.totalCanciones !== newTotal) {
