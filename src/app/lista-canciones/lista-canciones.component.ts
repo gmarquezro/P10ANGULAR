@@ -2,6 +2,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { MatSliderChange } from '@angular/material';
 import { BehaviorSubject } from 'rxjs' // Usaremos rxjs@6.x para 
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Cancion } from '../cancion';
 import * as moment from 'moment';
@@ -86,6 +87,7 @@ export class ListaCancionesComponent implements OnInit {
   public animatePage = true;
 
   _canciones = [];
+  songs1 = [];
   totalCanciones = -1;
 
   get canciones() {
@@ -108,7 +110,8 @@ export class ListaCancionesComponent implements OnInit {
 
   ngOnInit() {
     moment.updateLocale(moment.locale(), { invalidDate: "" }) // Actualizamos el mensaje que muestra moment.js al obtener una fecha inválida
-    this._canciones = CANCIONES;
+    this.songs.subscribe((songs: Cancion[]) => this.songs1 = songs);
+    this._canciones = this.songs1;
     this.registerAudioEvents();
   }
 
@@ -167,7 +170,7 @@ setStatus = (event) => {
 updateCriteria(criteria: string) {
     criteria = criteria ? criteria.trim() : '';
 
-    this._canciones = CANCIONES.filter(cancion => cancion.titulo.toLowerCase().includes(criteria.toLowerCase()) // Filto por titulo
+    this._canciones = this.songs1.filter(cancion => cancion.titulo.toLowerCase().includes(criteria.toLowerCase()) // Filto por titulo
       || cancion.autor.toLowerCase().includes(criteria.toLowerCase()) // Filtro por autor
       || cancion.titulo_album.toLowerCase().includes(criteria.toLowerCase()) // Filtro por titulo_album
       || cancion.fecha_publicacion.getFullYear().toString().includes(criteria)); // Filtro por año en fecha_publicacion
@@ -185,7 +188,7 @@ updateCriteria(criteria: string) {
    *  Se ejecuta al seleccionar una canción de la lista de canciones */
   onSelect(cancion: Cancion): void {
     this.selectedCancion = cancion; // Definimos la variable selectedCancion para que guarde la canción seleccionada
-    this.current_song_index = CANCIONES.indexOf(this.selectedCancion); // Guardamos la posición de la canción actual en el array CANCIONES
+    this.current_song_index = this.songs1.indexOf(this.selectedCancion); // Guardamos la posición de la canción actual en el array CANCIONES
     this.audio.src = this.selectedCancion.url;
     this.audio.play();
   }
@@ -276,27 +279,27 @@ updateCriteria(criteria: string) {
 
     if (!this.shuffle) {
       if (!this.repeat) {
-        if ((this.current_song_index > 0 && n === -1) || (this.current_song_index < (CANCIONES.length - 1) && n === 1)) {
+        if ((this.current_song_index > 0 && n === -1) || (this.current_song_index < (this.songs1.length - 1) && n === 1)) {
           this.current_song_index += n;
         } // Si la canción actual, antes de ejecutar la función, no es ni la primera ni la última, pasamos de canción
       } else {
         if (this.current_song_index === 0 && n === -1) {
-          this.current_song_index = CANCIONES.length - 1;
-        } else if (this.current_song_index === (CANCIONES.length - 1) && n === 1) {
+          this.current_song_index = this.songs1.length - 1;
+        } else if (this.current_song_index === (this.songs1.length - 1) && n === 1) {
           this.current_song_index = 0;
         } else {
           this.current_song_index += n;
         }
       } // Evaluamos si el modo repetición (repeat) está activado
     } else {
-      randomInt = this.randomIntFromInterval(0, (CANCIONES.length - 1)); // Generamos un nº aleatorio en el intervalo del array canciones
+      randomInt = this.randomIntFromInterval(0, (this.songs1.length - 1)); // Generamos un nº aleatorio en el intervalo del array canciones
       while (randomInt === this.current_song_index) {
-        randomInt = this.randomIntFromInterval(0, (CANCIONES.length - 1));
+        randomInt = this.randomIntFromInterval(0, (this.songs1.length - 1));
       } // Evitamos que en modo shuffle la nueva canción sea la misma que la anterior
       this.current_song_index = randomInt;
     } // Evluamos si el modo aleatorio (shuffle) está activado
 
-    this.selectedCancion = CANCIONES[this.current_song_index];
+    this.selectedCancion = this.songs1[this.current_song_index];
     this.audio.src = this.selectedCancion.url;
     this.audio.play();
   }
