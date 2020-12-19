@@ -13,8 +13,7 @@
     <mat-list-item><b>Released by: </b> {{cancion.discografica}}</mat-list-item>
     <mat-list-item><b>Release date: </b> {{cancion.fecha_publicacion | date :  "dd/MM/y"}}</mat-list-item>
     <mat-list-item><b>Genre: </b> {{cancion.genero}}</mat-list-item>
-    <mat-list-item><b>Style: </b> {{cancion.estilo}}</mat-list-item>
+    
   </mat-list>
-  <p *ngFor="let hashtag of cancion.hashtag; let i = index" class="mat-stroked-button">#{{cancion.hashtag[i]}}</p>
-  <mat-divider></mat-divider>
+  
 </nav>

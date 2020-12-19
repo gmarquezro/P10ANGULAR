@@ -8,7 +8,7 @@
     [@filterAnimation]="totalCanciones"
     [@close]="isOpen ? '' : 'closed'">
   <li class="song"
-      *ngFor="let cancion of canciones"
+      *ngFor="let cancion of songs | async"
       [class.selected]="cancion === selectedCancion"
       (click)="onSelect(cancion); close()">
     <div class="inner">

@@ -1,7 +1,8 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { MatSliderChange } from '@angular/material';
 import { BehaviorSubject } from 'rxjs' // Usaremos rxjs@6.x para 
-import { CANCIONES } from '../mock-canciones';
+import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Cancion } from '../cancion';
 import * as moment from 'moment';
 import {
@@ -60,7 +61,7 @@ import {
   styleUrls: ['./lista-canciones.component.css']
 })
 export class ListaCancionesComponent implements OnInit {
-
+  songs: Observable<Cancion[]>;
   selectedCancion: Cancion;
   isOpen = true;
 
@@ -91,8 +92,8 @@ export class ListaCancionesComponent implements OnInit {
     return this._canciones;
   }
 
-  constructor() {
-
+  constructor(firestore: AngularFirestore) {
+    this.songs = firestore.collection<Cancion>('canciones').valueChanges();
   /* Asignamos valores iniciales a las variables de reproductor */
 
     this.isMuted = false;
