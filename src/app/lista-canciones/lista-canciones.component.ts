@@ -62,7 +62,7 @@ import {
   styleUrls: ['./lista-canciones.component.css']
 })
 export class ListaCancionesComponent implements OnInit {
-  songs: Observable<Cancion[]>;
+  songs: Observable<Cancion[]>; //OBSERVABLE
   selectedCancion: Cancion;
   isOpen = true;
 
