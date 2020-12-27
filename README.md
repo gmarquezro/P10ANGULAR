@@ -18,6 +18,14 @@ Search engine,
 Detail with the track information (Author, Cover, Album), 
 Volume control(mute)
 
+
+## Autores ✒️
+* **Gerard Marquez** - *Developer* - [graumanix](https://github.com/graumanix)
+* **Oriol Gonzalo** - *Developer* - [ogonzaloUoc](https://github.com/ogonzaloUoc)
+* **Manuel Mendizábal** - *Developer* - [ManuelMendizabal](https://github.com/ManuelMendizabal)
+
+También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
+
 ## Initial screen
 At first we found only a search engine and a list of available songs.
  
