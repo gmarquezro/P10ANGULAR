@@ -4,19 +4,19 @@ MusicPlayerApp is a music player with firebase integration.
 All information about the songs is stored in a public database.
 
 The player has a number of basic features in any player:
-    -Song selection
-    -Flow control
-    -A user can drag and drop in the desired minute
-    -Playback/restoration time display
-    -Playback control
-    -Play
-    -Pause
-    -Stop
-    -Repeat
-    -Random
-    -Search engine
-    -Detail with the track information (Author, Cover, Album)
-    -Volume control(mute)
+Song selection, 
+Flow control, 
+A user can drag and drop in the desired minute, 
+Playback/restoration time display, 
+Playback control, 
+Play, 
+Pause, 
+Stop, 
+Repeat, 
+Random, 
+Search engine, 
+Detail with the track information (Author, Cover, Album), 
+Volume control(mute)
 
 ## Initial screen
 At first we found only a search engine and a list of available songs.
@@ -35,27 +35,27 @@ When the track is selected it will be marked in gray
 
 ## Track detail
 The system will show us on the right side the detail of the selected song:
-    -Title
-    -Cover
-    -Author
-    -Album
-    -Release date
-    -Gender
+Title, 
+Cover, 
+Author, 
+Album, 
+Release date, 
+Gender
 
 In the lower right side of the player we will also find the cover, title and author of the track.
 
 ## Playback control
 In the lower left part of the screen we will find the reproduction bar where we will be able to carry out the following actions:
-    -Song back
-    -Stop
-    -Play/Pause
-    -Song forward
-    -Random Play
-    -Repeat
-    -Current Playback Time
-    -Remaining Playback Time
-    -Playback percentage bar where we can move to the desired time of the track by dragging and dropping.
-    -Mute
+Song back, 
+Stop, 
+Play/Pause, 
+Song forward, 
+Random Play, 
+Repeat, 
+Current Playback Time, 
+Remaining Playback Time, 
+Playback percentage bar where we can move to the desired time of the track by dragging and dropping, 
+Mute
 
 
 ## Development server
