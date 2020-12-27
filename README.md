@@ -1,6 +1,62 @@
 # MusicPlayerApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
+MusicPlayerApp is a music player with firebase integration.
+All information about the songs is stored in a public database.
+
+The player has a number of basic features in any player:
+    -Song selection
+    -Flow control
+    -A user can drag and drop in the desired minute
+    -Playback/restoration time display
+    -Playback control
+    -Play
+    -Pause
+    -Stop
+    -Repeat
+    -Random
+    -Search engine
+    -Detail with the track information (Author, Cover, Album)
+    -Volume control(mute)
+
+## Initial screen
+At first we found only a search engine and a list of available songs.
+ 
+## Track selection
+When you select a track, the player starts playing it
+Shows the detail of the track
+Updates the controls by displaying the stop button
+It updates every second the current and remaining playback time as well as the slider's playback percentage.
+
+## Playback list and filtering
+In this list we will find all the available songs which we will be able to filter from the input "Search".
+
+## Track selection
+When the track is selected it will be marked in gray
+
+## Track detail
+The system will show us on the right side the detail of the selected song:
+    -Title
+    -Cover
+    -Author
+    -Album
+    -Release date
+    -Gender
+
+In the lower right side of the player we will also find the cover, title and author of the track.
+
+## Playback control
+In the lower left part of the screen we will find the reproduction bar where we will be able to carry out the following actions:
+    -Song back
+    -Stop
+    -Play/Pause
+    -Song forward
+    -Random Play
+    -Repeat
+    -Current Playback Time
+    -Remaining Playback Time
+    -Playback percentage bar where we can move to the desired time of the track by dragging and dropping.
+    -Mute
+
 
 ## Development server
 
